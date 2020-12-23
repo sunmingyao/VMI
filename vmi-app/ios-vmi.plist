@@ -11,7 +11,7 @@
                         <key>kind</key>
                         <string>software-package</string>
                         <key>url</key>
-                        <string>https://raw.githubusercontent.com/sunmingyao/VMI/main/vmi-app.ipa</string>
+                        <string>http://169.254.131.39:9000/file/vmi-app.ipa?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=minioadmin%2F20201223%2F%2Fs3%2Faws4_request&X-Amz-Date=20201223T035629Z&X-Amz-Expires=432000&X-Amz-SignedHeaders=host&X-Amz-Signature=ae451c4bcd2918bef152c0cf4630157c0b62cf985b0a26a0bc40f5e37ded7b8f</string>
                     </dict>
 					 <dict>
 						<key>kind</key>
