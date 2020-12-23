@@ -11,7 +11,7 @@
                         <key>kind</key>
                         <string>software-package</string>
                         <key>url</key>
-                        <string>itms-services://?action=download-manifest&url=https://https://raw.githubusercontent.com/sunmingyao/VMI/main/vmi-app.ipa</string>
+                        <string>http://192.168.10.226:80/resource/vmi-app.ipa</string>
                     </dict>
 					 <dict>
 						<key>kind</key>
