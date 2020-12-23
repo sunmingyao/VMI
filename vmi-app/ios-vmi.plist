@@ -13,14 +13,14 @@
                         <key>url</key>
                         <string>http://192.168.10.226:80/resource/vmi-app.ipa</string>
                     </dict>
-					 <dict>
+					 <!-- <dict>
 						<key>kind</key>
 						<string>display-image</string>
 						<key>needs-shine</key>
 						<true/>
 						<key>url</key>
 						<string>https://hmzy-app.cosmoplat.com/source/drawings-2/hmzy-app/icon.png</string>
-					</dict>
+					</dict> -->
                 </array>
                 <key>metadata</key>
                 <dict>
