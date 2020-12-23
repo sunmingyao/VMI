@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>备件VMI</title>
+		<link href="./dialog.css" rel="stylesheet">
+	
+		<style type="text/css">
+			.container {}
+			html,body{
+				background: #FFFFFF;
+			}
+			.logo {
+				width: 2.04rem;
+				height: .45rem;
+				/*background-image: url("logo.svg");
+				background-size: contain;*/
+				display: block;
+				margin: 1rem auto 0;
+			}
+			
+			.text {
+				color: #999999;
+				font-size: .14rem;
+				text-align: center;
+				margin-top: .09rem;
+			}
+			
+			.logoback {
+				width: 3.1rem;
+				height: 1.73rem;
+				background-image: url("back.png");
+				background-size: contain;
+				margin: 0.21rem auto;
+			}
+			
+			.iosLoad {
+				display: block;
+				width: 2.32rem;
+				height: .56rem;
+				background-image: url("ios.png");
+				background-size: contain;
+				margin: .49rem auto 0;
+			}
+			
+			.anLoad {
+				display: block;
+				width: 2.32rem;
+				height: .56rem;
+				background-image: url("an.png");
+				background-size: contain;
+				margin: .17rem auto 0;
+			}
+			
+			.alert {
+				text-align: center;
+				color: red;
+				font-size: .16rem;
+			}
+			.input{
+				margin:8px 0;
+				width:100%;
+				padding:11px 8px;
+				font-size:15px; 
+				border:1px solid #999;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<!--<div class="alert">
+				请在手机浏览器中打开
+			</div>-->
+			<!-- <img class="logo" src="logo.svg"/> -->
+			<div class="text">备件VMI</div>
+			<div class="logoback"></div>
+
+			<div class="iosLoad" id="iosLoad" ></div>
+			<a class="anLoad" id="anLoad" href="https://hmzy-app.cosmoplat.com/source/drawings-2/prod-wulian.apk" download ></a>
+		</div>
+
+	</body>
+
+<script src="./mDialogMin.js"></script>
+
+<script type="text/javascript">
+	(function(doc, win) {
+	    var docEl = doc.documentElement,
+	        isIOS = navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+	        dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1,
+	        dpr = window.top === window.self ? dpr : 1, //被iframe引用时，禁止缩放
+	        dpr = 1,
+	        scale = 1 / dpr,
+	        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+	    docEl.dataset.dpr = dpr;
+	    var metaEl = doc.createElement('meta');
+	    metaEl.name = 'viewport';
+	    metaEl.content = 'initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale;
+	    docEl.firstElementChild.appendChild(metaEl);
+	    var recalc = function() {
+	        var width = docEl.clientWidth;
+	        if (width / dpr >375) {
+	            width = 375 * dpr;
+	        }
+	        // 乘以100，px : rem = 100 : 1
+	        docEl.style.fontSize = 100 * (width / 375) + 'px';
+	    };
+	    recalc()
+	    if (!doc.addEventListener) return;
+	    win.addEventListener(resizeEvt, recalc, false);
+	    var ua = window.navigator.userAgent.toLowerCase();
+		if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		　　alert("请点击右上角...选择在浏览器中打开 ")
+		}else{
+		　　/* 不是微信浏览器 */
+		}  
+		
+	})(document, window);
+	
+	function createCode(length) {//验证码长度
+        var code = "";
+        for (var i = 1; i <= length; i++) {
+            code += (parseInt(Math.random() * 10));
+        }
+ 
+        return code;
+    }
+    var code = createCode(4)
+	document.getElementById("iosLoad").onclick = function(){
+    Dialog.init(`
+    			验证码:${code}
+    			<input type="text" placeholder="请输入验证码" class="input" />
+ 
+    			`,
+    	{
+        title : '请输入验证码',
+        button : {
+            
+        	关闭 : function(){
+                code = createCode(4)
+                Dialog.close(this);
+            },
+       		确定 : function(){
+                if(this.querySelector('input').value == code){
+                	let a = document.createElement("a");
+					a.href = "itms-services://?action=download-manifest&url=https://github.com/sunmingyao/VMI/blob/main/vmi-app/ios-vmi.plist";
+					a.download = true;
+					a.click()
+					Dialog.close(this);
+					Dialog.init('正在下载...,可在桌面查看进度',5000);
+                }else{
+                	 Dialog.init('验证码输入错误',1000);
+                }
+               
+               
+            
+            },
+        }
+    });
+    document.getElementById("anLoad").onclick = function(){
+    	Dialog.init('正在下载...,请稍后',3000);
+    }
+}
+	 
+</script>
+</html>
